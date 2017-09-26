@@ -39,10 +39,10 @@ public class Person {
         if(LocationY - 1 >= 0){
             Neighbors[0] = p[LocationY-1][LocationX];
         }
-        if(LocationX + 1 >= p.length - 1){
+        if(LocationX + 1 < p.length){
             Neighbors[1] = p[LocationY][LocationX+1];
         }
-        if(LocationY + 1 >= p[LocationY].length - 1){
+        if(LocationY + 1 < p[LocationY].length){
             Neighbors[2] = p[LocationY+1][LocationX];
         }
         if(LocationX - 1 >= 0){

@@ -13,9 +13,17 @@ public class Population {
                 Person newPerson = new Person();
                 newPerson.setID(idCounter);
                 newPerson.setLocation(i, j);
+                newPerson.setID(idCounter);
                 people[i][j] = newPerson;
 
+                ++idCounter;
 
+
+            }
+        }
+        for (int a = 0; a < y; a++){
+            for (int b = 0; b < x; b++){
+                people[a][b].setNeighbors(people);
             }
         }
 
