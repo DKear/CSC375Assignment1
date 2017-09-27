@@ -29,6 +29,12 @@ public class Population {
 
     }
 
+    public void swapPeople(Person a, Person b){
+        
+
+
+    }
+
     public void setSize(){
         populationSize = people.length*people[0].length;
     }

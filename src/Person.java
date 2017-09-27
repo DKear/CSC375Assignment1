@@ -9,13 +9,15 @@ public class Person {
     //[0] is North, [1] is East, [2] is South, [3] is West
     int LocationX=0;
     int LocationY=0;
-    //int[] Affinities;
+    int[] Affinities;
 
     public Person(){
         ID = -1;
     }
 
-
+    public void setAffinity(int p){
+        Affinities = new int[p];
+    }
 
     public void setLocation(int y, int x){
         LocationX = x;
