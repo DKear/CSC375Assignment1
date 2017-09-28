@@ -3,7 +3,7 @@
  * Created by Jamie on 9/25/2017.
  */
 public class Person {
-    int ID;
+    Integer ID;
     //-1 means empty
     Person[] Neighbors = new Person[4];
     //[0] is North, [1] is East, [2] is South, [3] is West

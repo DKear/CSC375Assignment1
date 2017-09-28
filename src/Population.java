@@ -1,6 +1,6 @@
 public class Population {
     Person[][] people;
-    int populationSize;
+    Integer populationSize;
 
     public Population(int y, int x){
 
@@ -31,5 +31,19 @@ public class Population {
 
     public void setSize(){
         populationSize = people.length*people[0].length;
+    }
+
+    public void print(){
+        String seat;
+        String seatPadding;
+        for (int i = 0; i < people.length ; i++){
+            for (int j = 0; j < people[i].length; j++){
+                seat = people[i][j].ID.toString();
+                seatPadding = String.format("%3s" , seat).replace(' ', '0');
+                System.out.print("[" + seatPadding + "]");
+
+            }
+            System.out.println();;
+        }
     }
 }
