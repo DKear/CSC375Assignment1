@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9960d13-e0b1-4c88-afb4-ffa14a564ff1" name="Default" comment="big progress">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Thread.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AffinityCalc.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Algorithm.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Person.java" afterPath="$PROJECT_DIR$/src/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Population.java" afterPath="$PROJECT_DIR$/src/Population.java" />
-    </list>
+    <list default="true" id="e9960d13-e0b1-4c88-afb4-ffa14a564ff1" name="Default" comment="big progress" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
