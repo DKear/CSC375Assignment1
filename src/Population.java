@@ -30,7 +30,7 @@ public class Population {
     }
 
     public void swapPeople(Person a, Person b){
-        
+
 
 
     }
