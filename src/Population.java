@@ -1,55 +1,28 @@
 public class Population {
-    Person[][] people;
-    Integer populationSize;
 
-    public Population(int y, int x){
+    Generation generation;
 
-        people = new Person[y][x];
-        int idCounter = 0;
+    public Population(Generation g){
 
-        for(int i = 0; i < y; i++){
-            for(int j = 0; j < x; j++){
-
-                Person newPerson = new Person();
-                newPerson.setID(idCounter);
-                newPerson.setLocation(i, j);
-                newPerson.setID(idCounter);
-                people[i][j] = newPerson;
-
-                ++idCounter;
-
-
-            }
-        }
-        for (int a = 0; a < y; a++){
-            for (int b = 0; b < x; b++){
-                people[a][b].setNeighbors(people);
-            }
-        }
-
+        generation = g;
     }
 
-    public void swapPeople(Person a, Person b){
-
-
-
-    }
-
-    public void setSize(){
-        populationSize = people.length*people[0].length;
-    }
 
     public void print(){
         String seat;
         String seatPadding;
-        for (int i = 0; i < people.length ; i++){
-            for (int j = 0; j < people[i].length; j++){
-                seat = people[i][j].ID.toString();
+        for (int i = 0; i < generation.getGeneration().length ; i++){
+            for (int j = 0; j < generation.getGeneration()[i].length; j++){
+                seat = generation.getGeneration()[i][j].ID.toString();
                 seatPadding = String.format("%3s" , seat).replace(' ', '0');
                 System.out.print("[" + seatPadding + "]");
 
             }
-            System.out.println();;
+            System.out.println();
         }
+    }
+
+    public void updateGeneration(Generation g){
+        generation = g;
     }
 }
