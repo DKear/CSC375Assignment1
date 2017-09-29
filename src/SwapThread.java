@@ -4,46 +4,62 @@ import java.util.Random;
  * Created by Jamie on 9/27/2017.
  */
 public class SwapThread implements Runnable{
-    int stop = 10;
+    int stop;
+    Integer threadNumber;
     int currentMaxAffinity;
     Generation currentGen;
     Generation currentBestGen;
     Population classroom;
     public void run(){
+        System.out.println("thread: " + threadNumber);
+        System.out.println("class size: " + currentGen.classSize);
+        System.out.println("generation: " + currentGen.generationNumber);
+        classroom.print();
 
         for(int i = 0; i < stop; i++){
-            System.out.println("thread 1");
+            ++currentGen.generationNumber;
+            swapSeats(currentGen);
+            setGeneration(currentGen, classroom);
+            System.out.println("thread: " + threadNumber);
             System.out.println("class size: " + currentGen.classSize);
             System.out.println("generation: " + currentGen.generationNumber);
             classroom.print();
+
+
         }
 
     }
-    public SwapThread(Generation g, int s, Population c){
+    public SwapThread(Generation g, int s, Population c, Integer tn){
         currentGen = g;
         stop = s;
         classroom = c;
+        threadNumber = tn;
     }
 
     public void swapSeats(Generation g){
         Person[][] generation = g.getGeneration();
-        int arraySize = generation.length*generation[0].length;
+        int arraySizeY = generation.length;
+        int arraySizeX = generation[0].length;
         Random random = new Random();
         Person[][] temp = new Person[1][1];
-        int a = random.nextInt(arraySize-1);
-        int b = random.nextInt(arraySize-1);
-        int c = random.nextInt(arraySize-1);
-        int d = random.nextInt(arraySize-1);
+        int a = random.nextInt(arraySizeY);
+        int b = random.nextInt(arraySizeX);
+        int c = random.nextInt(arraySizeY);
+        int d = random.nextInt(arraySizeX);
 
         temp[0][0] = generation[a][b];
         generation[a][b] = generation[c][d];
-        generation[c][d] = generation[a][b];
+        generation[c][d] = temp[0][0];
+        generation[a][b].setNeighbors(generation);
+        generation[c][d].setNeighbors(generation);
 
     }
 
     public void setGeneration(Generation g, Population p){
         p.updateGeneration(g);
     }
+
+
 
     /*public int calcOverallAffinity(Person[][] p){
 
