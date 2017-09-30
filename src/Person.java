@@ -1,3 +1,4 @@
+import java.util.Random;
 
 /**
  * Created by Jamie on 9/25/2017.
@@ -9,14 +10,24 @@ public class Person {
     //[0] is North, [1] is East, [2] is South, [3] is West
     int LocationX=0;
     int LocationY=0;
-    int[] Affinities;
+    int[] rbgValue = new int[3];
+    int currentAffinity;
+
 
     public Person(){
         ID = -1;
     }
 
-    public void setAffinity(int p){
-        Affinities = new int[p];
+    public void setColorValues(){
+        Random random = new Random();
+        rbgValue[0] = random.nextInt(63);
+        rbgValue[1] = random.nextInt(63);
+        rbgValue[2] = random.nextInt(63);
+
+    }
+
+    public void calcCurrentAffinity(){
+        //this.getNeighbors()[0].rbgValue[0]
     }
 
     public void setLocation(int y, int x){

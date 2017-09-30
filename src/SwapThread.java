@@ -14,19 +14,26 @@ public class SwapThread implements Runnable{
         System.out.println("thread: " + threadNumber);
         System.out.println("class size: " + currentGen.classSize);
         System.out.println("generation: " + currentGen.generationNumber);
-        classroom.print();
+        //classroom.print();
+        currentGen.print();
+
 
         for(int i = 0; i < stop; i++){
-            ++currentGen.generationNumber;
+            //classroom.updateGeneration(currentGen);
+            currentGen.incGenNum();
             swapSeats(currentGen);
-            setGeneration(currentGen, classroom);
-            System.out.println("thread: " + threadNumber);
-            System.out.println("class size: " + currentGen.classSize);
-            System.out.println("generation: " + currentGen.generationNumber);
-            classroom.print();
+            //setGeneration(currentGen, classroom);
+            //System.out.println("thread: " + threadNumber);
+            //System.out.println("class size: " + currentGen.classSize);
+            //System.out.println("generation: " + currentGen.generationNumber);
 
 
         }
+        System.out.println("thread: " + threadNumber);
+        System.out.println("class size: " + currentGen.classSize);
+        System.out.println("generation: " + currentGen.generationNumber);
+        setGeneration(currentGen, classroom);
+        currentGen.print();
 
     }
     public SwapThread(Generation g, int s, Population c, Integer tn){

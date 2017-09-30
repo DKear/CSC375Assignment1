@@ -1,7 +1,7 @@
 public class Generation {
     Person[][] people;
     Integer generationNumber = 0;
-    Integer classSize =0;
+    Integer classSize = 0;
 
     public Generation(int y, int x){
         people = new Person[y][x];
@@ -35,5 +35,20 @@ public class Generation {
 
     public Person[][] getGeneration(){
         return people;
+    }
+
+    public int incGenNum(){return ++generationNumber;}
+    public void print(){
+        String seat;
+        String seatPadding;
+        for (int i = 0; i < this.getGeneration().length ; i++){
+            for (int j = 0; j < this.getGeneration()[i].length; j++){
+                seat = this.getGeneration()[i][j].ID.toString();
+                seatPadding = String.format("%3s" , seat).replace(' ', '0');
+                System.out.print("[" + seatPadding + "]");
+
+            }
+            System.out.println();
+        }
     }
 }
