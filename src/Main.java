@@ -11,6 +11,7 @@ public class Main {
     public static void main(String args[]){
         int threadCount= 2;
         ArrayList<Generation> generations = new ArrayList<>();
+
         for(int i = 0; i < threadCount; i++){
             generations.add(new Generation(10,10));
             generations.get(i).setSize();
@@ -20,15 +21,9 @@ public class Main {
         generation.setSize();
         ArrayList<Thread> threads = new ArrayList<>();
 
-
-
-        for(int i = 0; i<threadCount; i++) {
-            threads.add(new Thread(new SwapThread(generations.get(i), 1000, classroom, i)));
-        }
-
-
-
-
+        //for(int i = 0; i<threadCount; i++) {
+        //    threads.add(new Thread(new SwapThread(generations.get(i), 1000, classroom, i, exchanger)));
+        //}
 
         for(int i = 0; i < threads.size(); i++) {
             threads.get(i).start();
@@ -41,9 +36,6 @@ public class Main {
             }
 
         }
-
-
-
 
         for(int i = 0; i < threads.size(); i++) {
             try{

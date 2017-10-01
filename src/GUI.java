@@ -4,13 +4,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
 
-public class GUI implements ActionListener {
+public class GUI extends JPanel {
+    Color color;
 
-    Container controllingContainer;
+    public GUI(Color c){
+        color = c;
+    }
 
 
-    public void addComponentToPane(Container pane) {
+
+
+
+
+
+
+    /*public void addComponentToPane(Container pane) {
         //Graphics g = new Graphic;
         pane.setPreferredSize(new Dimension (1800, 900));
         Generation generation = new Generation(10,10);
@@ -26,67 +36,64 @@ public class GUI implements ActionListener {
                 pane.print(g);
             }
         }
-        /*Generation generation = new Generation(10,10);
+        Generation generation = new Generation(10,10);
         Population classroom = new Population(generation);
         generation.setSize();
 
         controllingContainer = pane;
         pane.setPreferredSize(new Dimension (1800, 900));
         JFrame frame = new JFrame();
-        GridBagConstraints bgc = new GridBagConstraints();*/
+        GridBagConstraints bgc = new GridBagConstraints();
 
 
-    }
+    }*/
 
-    public void actionPerformed(ActionEvent e) {
-
-    }
-
-    private static void createAndShowGUI() {
-        JFrame frame = new JFrame("CSC375Assignment1");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        //Create and set up the content pane.
-        GUI gui = new GUI();
-        gui.addComponentToPane(frame.getContentPane());
-
-        //Display the window.
-        frame.pack();
-        frame.setVisible(true);
-    }
     public static void main(String[] args) {
-        /*int threadCount= 2;
+        JFrame frame = new JFrame();
+        //frame.getContentPane().add(new GUI(new Color(0,255,0)));
+        JPanel panel = new JPanel();
+        frame.add(panel);
 
-        ArrayList<Thread> threads = new ArrayList<>();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1920, 1080);
+        frame.setVisible(true);
+
+        int threadCount= 2;
+        ArrayList<Generation> generations = new ArrayList<>();
+
         for(int i = 0; i < threadCount; i++){
-            ArrayList<Generation> generations = new ArrayList<>();
-            generations.add(new Generation(10,10));
+            generations.add(new Generation(5,5));
             generations.get(i).setSize();
-        }*/
-
-
-        /* Use an appropriate Look and Feel */
-        try {
-            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-            UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
-        /* Turn off metal's use of bold fonts */
-        UIManager.put("swing.boldMetal", Boolean.FALSE);
+        Generation generation = new Generation(10,10);
+        Population classroom = new Population(generation);
+        generation.setSize();
+        ArrayList<Thread> threads = new ArrayList<>();
 
-        //Schedule a job for the event dispatch thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                createAndShowGUI();
+        for(int i = 0; i<threadCount; i++) {
+            threads.add(new Thread(new SwapThread(generations.get(i), 1000, classroom, i, panel)));
+        }
+
+        for(int i = 0; i < threads.size(); i++) {
+            threads.get(i).start();
+
+            try{
+                threads.get(1).sleep(2000);
+
+            } catch(InterruptedException e){
+
             }
-        });
+
+        }
+
+        for(int i = 0; i < threads.size(); i++) {
+            try{
+                threads.get(i).join();
+            } catch(Exception e){
+
+            }
+        }
+
+
     }
 }

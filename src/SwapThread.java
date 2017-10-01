@@ -1,4 +1,8 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Random;
+import java.util.concurrent.Exchanger;
 
 /**
  * Created by Jamie on 9/27/2017.
@@ -6,22 +10,43 @@ import java.util.Random;
 public class SwapThread implements Runnable{
     int stop;
     Integer threadNumber;
-    int currentMaxAffinity;
+    int currentMaxAffinity = 0;
     Generation currentGen;
     Generation currentBestGen;
     Population classroom;
+    Exchanger genExchanger = null;
+    JPanel panel;
+
     public void run(){
+        currentBestGen = new Generation(currentGen.people.length, currentGen.people[0].length);
+        currentGen.calcHappiness();
         System.out.println("thread: " + threadNumber);
         System.out.println("class size: " + currentGen.classSize);
         System.out.println("generation: " + currentGen.generationNumber);
+        System.out.println("happiness: " + currentGen.genHappiness);
         //classroom.print();
         currentGen.print();
 
 
+
         for(int i = 0; i < stop; i++){
             //classroom.updateGeneration(currentGen);
+
             currentGen.incGenNum();
             swapSeats(currentGen);
+            currentGen.calcHappiness();
+            if(currentGen.genHappiness > currentMaxAffinity){
+                currentMaxAffinity = currentGen.genHappiness;
+                currentBestGen = new Generation(currentGen.people.length, currentGen.people[0].length);
+                for (int a = 0; a < currentBestGen.people.length; a ++){
+                    for (int b = 0; b < currentBestGen.people[0].length; b++){
+                        currentBestGen.people[a][b] = currentGen.people[a][b];
+                    }
+                }
+                currentBestGen.generationNumber = currentGen.generationNumber;
+
+            }
+
             //setGeneration(currentGen, classroom);
             //System.out.println("thread: " + threadNumber);
             //System.out.println("class size: " + currentGen.classSize);
@@ -32,15 +57,60 @@ public class SwapThread implements Runnable{
         System.out.println("thread: " + threadNumber);
         System.out.println("class size: " + currentGen.classSize);
         System.out.println("generation: " + currentGen.generationNumber);
+        System.out.println("happiness: " + currentGen.genHappiness);
+
         setGeneration(currentGen, classroom);
         currentGen.print();
+        paint(panel.getGraphics(), currentGen);
+        System.out.println("Best Gen number: " + currentBestGen.generationNumber);
+        System.out.println("Best Gen happiness: " + currentMaxAffinity);
+        paint(panel.getGraphics(), currentBestGen);
 
     }
-    public SwapThread(Generation g, int s, Population c, Integer tn){
+    public SwapThread(Generation g, int s, Population c, Integer tn , JPanel p){
         currentGen = g;
         stop = s;
         classroom = c;
         threadNumber = tn;
+        panel = p;
+
+
+    }
+
+    public void paint(Graphics g, Generation gen) {
+        int x = 0;
+        int y = 0;
+        for (int b = 0; b < gen.people.length; b++) {
+            for (int a = 0; a < gen.people[0].length; a++) {
+
+                Image img = createSeatImage(new Color(0, gen.people[b][a].currentHappiness, 0));
+                g.drawImage(img, x, y, panel);
+                x += 10;
+            }
+            x = 0;
+            y+=10;
+        }
+
+
+    }
+
+
+
+
+
+    private Image createSeatImage(Color c){
+        BufferedImage bufferedImage = new BufferedImage(10,10,BufferedImage.TYPE_INT_RGB);
+        int rgb = c.getRGB();
+
+        for(int i = 0; i < 10 ; i++){
+            for(int j = 0; j < 10; j++){
+                bufferedImage.setRGB(i, j , rgb);
+            }
+
+        }
+
+
+        return bufferedImage;
     }
 
     public void swapSeats(Generation g){
@@ -59,6 +129,8 @@ public class SwapThread implements Runnable{
         generation[c][d] = temp[0][0];
         generation[a][b].setNeighbors(generation);
         generation[c][d].setNeighbors(generation);
+        generation[a][b].calcCurrentHappiness();
+        generation[c][d].calcCurrentHappiness();
 
     }
 

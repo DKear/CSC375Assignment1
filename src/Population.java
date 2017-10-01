@@ -1,6 +1,13 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.Random;
+
 public class Population {
 
     Generation generation;
+    Color color;
+    JPanel panel = new JPanel();
 
     public Population(Generation g){
 
@@ -21,6 +28,12 @@ public class Population {
             System.out.println();
         }
     }
+
+    public void paintBestSolution(){
+
+    }
+
+
 
     public void updateGeneration(Generation g){
         generation = g;

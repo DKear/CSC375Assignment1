@@ -10,24 +10,50 @@ public class Person {
     //[0] is North, [1] is East, [2] is South, [3] is West
     int LocationX=0;
     int LocationY=0;
-    int[] rbgValue = new int[3];
-    int currentAffinity;
+    int[] affValue;
+    int currentHappiness;
 
 
     public Person(){
         ID = -1;
     }
 
-    public void setColorValues(){
+    public void setAffinityValues(int size){
         Random random = new Random();
-        rbgValue[0] = random.nextInt(63);
-        rbgValue[1] = random.nextInt(63);
-        rbgValue[2] = random.nextInt(63);
+        affValue = new int[size];
+        for (int i = 0; i < size; i++){
+            affValue[i] = random.nextInt(63);
+        }
 
     }
 
-    public void calcCurrentAffinity(){
-        //this.getNeighbors()[0].rbgValue[0]
+    public void calcCurrentHappiness(){
+        Person north = this.getNeighbors()[0];
+        int affNorth = 0;
+        Person east = this.getNeighbors()[1];
+        int affEast = 0;
+        Person south = this.getNeighbors()[2];
+        int affSouth = 0;
+        Person west = this.getNeighbors()[3];
+        int affWest = 0;
+
+        if(north.getID() != -1){
+            affNorth = affValue[north.getID()];
+        }if(east.getID() != -1){
+            affEast = affValue[east.getID()];
+        }
+        if(south.getID() != -1){
+            affSouth = affValue[south.getID()];
+        }if(west.getID() != -1){
+            affWest = affValue[west.getID()];
+        }
+
+        currentHappiness = affNorth + affEast + affSouth + affWest;
+
+    }
+
+    public int getHappiness(){
+        return currentHappiness;
     }
 
     public void setLocation(int y, int x){
