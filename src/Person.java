@@ -11,11 +11,13 @@ public class Person {
     int LocationX=0;
     int LocationY=0;
     int[] affValue;
-    int currentHappiness;
+    //int currentHappiness;
 
 
     public Person(){
         ID = -1;
+
+
     }
 
     public void setAffinityValues(int size){
@@ -27,7 +29,7 @@ public class Person {
 
     }
 
-    public void calcCurrentHappiness(){
+    /*public void calcCurrentHappiness(){
         Person north = this.getNeighbors()[0];
         int affNorth = 0;
         Person east = this.getNeighbors()[1];
@@ -50,11 +52,11 @@ public class Person {
 
         currentHappiness = affNorth + affEast + affSouth + affWest;
 
-    }
+    }*/
 
-    public int getHappiness(){
+    /*public int getHappiness(){
         return currentHappiness;
-    }
+    }*/
 
     public void setLocation(int y, int x){
         LocationX = x;

@@ -9,7 +9,7 @@ public class Main {
 
 
     public static void main(String args[]){
-        int threadCount= 2;
+        int threadCount= 4;
         ArrayList<Generation> generations = new ArrayList<>();
 
         for(int i = 0; i < threadCount; i++){
@@ -17,7 +17,7 @@ public class Main {
             generations.get(i).setSize();
         }
         Generation generation = new Generation(10,10);
-        Population classroom = new Population(generation);
+        //Population classroom = new Population(generation);
         generation.setSize();
         ArrayList<Thread> threads = new ArrayList<>();
 

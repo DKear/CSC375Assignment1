@@ -2,7 +2,7 @@ public class Generation {
     Person[][] people;
     Integer generationNumber = 0;
     Integer classSize = 0;
-    Integer genHappiness = 0;
+    //Integer genHappiness = 0;
 
     public Generation(int y, int x){
         people = new Person[y][x];
@@ -13,6 +13,7 @@ public class Generation {
             for(int j = 0; j < x; j++){
 
                 Person newPerson = new Person();
+                //newPerson.setAffinityValues(y *x);
                 newPerson.setID(idCounter);
                 newPerson.setLocation(i, j);
                 newPerson.setID(idCounter);
@@ -27,13 +28,13 @@ public class Generation {
             for (int b = 0; b < x; b++){
                 setSize();
                 people[a][b].setNeighbors(people);
-                people[a][b].setAffinityValues(this.classSize);
-                people[a][b].calcCurrentHappiness();
+                //people[a][b].setAffinityValues(this.classSize);
+                //people[a][b].calcCurrentHappiness();
             }
         }
     }
 
-    public void calcHappiness(){
+    /*public void calcHappiness(){
         int rTotal = 0;
         for(int i = 0; i < people.length; i++) {
             for (int j = 0; j < people[0].length; j++) {
@@ -44,7 +45,7 @@ public class Generation {
             }
         }
         genHappiness = rTotal;
-    }
+    }*/
 
 
 
