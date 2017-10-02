@@ -1,9 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.concurrent.Exchanger;
 
 /*
 Class that is to be run in threads. Swaps the seats, calls methods to calculate

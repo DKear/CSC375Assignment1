@@ -1,4 +1,3 @@
-import java.util.Random;
 /*
 Class that represents a person. They have an ID, location, and 4 neighbors
 (some neighbors may be empty)
