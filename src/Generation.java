@@ -1,19 +1,20 @@
 public class Generation {
+/*
+Class that contains arrangements of people and which iteration they are.
+*/
     Person[][] people;
     Integer generationNumber = 0;
     Integer classSize = 0;
-    //Integer genHappiness = 0;
 
     public Generation(int y, int x){
         people = new Person[y][x];
         int idCounter = 0;
 
-
+	//create the people
         for(int i = 0; i < y; i++){
             for(int j = 0; j < x; j++){
 
                 Person newPerson = new Person();
-                //newPerson.setAffinityValues(y *x);
                 newPerson.setID(idCounter);
                 newPerson.setLocation(i, j);
                 newPerson.setID(idCounter);
@@ -28,47 +29,21 @@ public class Generation {
             for (int b = 0; b < x; b++){
                 setSize();
                 people[a][b].setNeighbors(people);
-                //people[a][b].setAffinityValues(this.classSize);
-                //people[a][b].calcCurrentHappiness();
             }
         }
     }
 
-    /*public void calcHappiness(){
-        int rTotal = 0;
-        for(int i = 0; i < people.length; i++) {
-            for (int j = 0; j < people[0].length; j++) {
-
-                rTotal = rTotal + people[i][j].getHappiness();
 
 
-            }
-        }
-        genHappiness = rTotal;
-    }*/
-
-
-
+    //set size
     public void setSize(){
         classSize = people.length*people[0].length;
     }
-
+    //get the people array
     public Person[][] getGeneration(){
         return people;
     }
-
+    //increment the generation counter
     public int incGenNum(){return ++generationNumber;}
-    public void print(){
-        String seat;
-        String seatPadding;
-        for (int i = 0; i < this.getGeneration().length ; i++){
-            for (int j = 0; j < this.getGeneration()[i].length; j++){
-                seat = this.getGeneration()[i][j].ID.toString();
-                seatPadding = String.format("%3s" , seat).replace(' ', '0');
-                System.out.print("[" + seatPadding + "]");
 
-            }
-            System.out.println();
-        }
-    }
 }

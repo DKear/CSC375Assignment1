@@ -2,10 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Random;
-
+/*
+Class holds the affinity values of each student, calculates happiness of individuals
+and uses that to calculate a generation's total happiness, and paints generations.
+*/
 public class Population {
 
-    int [][] affinities;
+    int [][] affinities; // First element represents a person, the second is their affinity to another person.
     JPanel panel = new JPanel();
     int happiness = 0;
 
@@ -19,8 +22,9 @@ public class Population {
             }
         }
     }
-
+    //Calcs individual happiness
     public int calcIndividualHappiness(Person p){
+	//get neighbors
         int iHappiness=0;
         Person north = p.getNeighbors()[0];
         int affNorth = 0;
@@ -31,6 +35,7 @@ public class Population {
         Person west = p.getNeighbors()[3];
         int affWest = 0;
 
+	//get affinity from affinities[][] by ID
         if(north.getID() != -1){
             affNorth = affinities[p.getID()][north.getID()];
         }if(east.getID() != -1){
@@ -41,13 +46,16 @@ public class Population {
         }if(west.getID() != -1){
             affWest = affinities[p.getID()][west.getID()];
         }
-
+	
+	//add up all the affinity values and return the happiness
         iHappiness = affNorth + affEast + affSouth + affWest;
         return iHappiness;
     }
 
+    //calculate the happiness of the whole generation
     public int calcHappiness(Generation g){
         happiness = 0;
+	//calculate individual happiness of every person in the generation and add them together
         for (int i = 0; i < g.people.length; i++){
             for (int j = 0 ; j < g.people[0].length; j++){
                 happiness = happiness + calcIndividualHappiness(g.people[i][j]);
@@ -57,26 +65,13 @@ public class Population {
     }
 
 
-    /*public void print(){
-        String seat;
-        String seatPadding;
-        for (int i = 0; i < generation.getGeneration().length ; i++){
-            for (int j = 0; j < generation.getGeneration()[i].length; j++){
-                seat = generation.getGeneration()[i][j].ID.toString();
-                seatPadding = String.format("%3s" , seat).replace(' ', '0');
-                System.out.print("[" + seatPadding + "]");
-
-            }
-            System.out.println();
-        }
-    }*/
-
+    //Paint the generation
     public void paint(Graphics g, Generation gen) {
         int x = 0;
         int y = 0;
         for (int b = 0; b < gen.people.length; b++) {
             for (int a = 0; a < gen.people[0].length; a++) {
-
+		//paint image for an individual, use the affinity to set the green (rgb) value
                 Image img = createSeatImage(new Color(0, calcIndividualHappiness(gen.people[b][a]), 0));
                 g.drawImage(img, x, y, panel);
                 x += 10;
@@ -85,8 +80,10 @@ public class Population {
             y+=10;
         }
         y+=10;
+	//paint the generation's happiness
         g.drawString("Happiness: " + calcHappiness(gen), x , y);
         y+=10;
+	//paint which generation
         g.drawString("Gen Number: " + gen.generationNumber, x ,y);
 
 
@@ -95,7 +92,7 @@ public class Population {
 
 
 
-
+    //create an image of a person using a color
     private Image createSeatImage(Color c){
         BufferedImage bufferedImage = new BufferedImage(10,10,BufferedImage.TYPE_INT_RGB);
         int rgb = c.getRGB();
@@ -117,7 +114,4 @@ public class Population {
 
 
 
-/*    public void updateGeneration(Generation g){
-        generation = g;
-    }*/
 }
