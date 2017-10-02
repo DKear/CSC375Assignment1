@@ -58,7 +58,7 @@ public class GUI extends JPanel {
         frame.setSize(1920, 1080);
         frame.setVisible(true);
 
-        int threadCount = 2;
+        int threadCount = 32;
         ArrayList<Generation> generations = new ArrayList<>();
         ArrayList<Generation> bestGens = new ArrayList<>();
 
@@ -79,9 +79,9 @@ public class GUI extends JPanel {
         generation.setSize();
         ArrayList<Thread> threads = new ArrayList<>();
         int tenthousands = 0;
-        System.out.println("initialized");
+        //System.out.println("initialized");
 
-        while (happiest < generation.classSize * 255  & tenthousands < 100000000) {
+        while (happiest < generation.classSize * 255  & tenthousands < 1000) {
             for (int i = 0; i < threadCount; i++) {
                 threads.add(new Thread(new SwapThread(generations.get(i), 10000, classroom, i, panel, bestGens)));
             }

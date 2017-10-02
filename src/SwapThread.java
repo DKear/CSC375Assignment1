@@ -22,12 +22,12 @@ public class SwapThread implements Runnable{
     public void run(){
         //currentBestGen = new Generation(currentGen.people.length, currentGen.people[0].length);
         //currentGen.calcHappiness();
-        System.out.println("thread: " + threadNumber);
-        System.out.println("class size: " + currentGen.classSize);
-        System.out.println("generation: " + currentGen.generationNumber);
+        //System.out.println("thread: " + threadNumber);
+        //System.out.println("class size: " + currentGen.classSize);
+        //System.out.println("generation: " + currentGen.generationNumber);
         //System.out.println("happiness: " + currentGen.genHappiness);
         //classroom.print();
-        currentGen.print();
+        //currentGen.print();
 
 
 
@@ -61,16 +61,16 @@ public class SwapThread implements Runnable{
 
         }
         bestGens.add(currentBestGen);
-        System.out.println("thread: " + threadNumber);
-        System.out.println("class size: " + currentGen.classSize);
-        System.out.println("generation: " + currentGen.generationNumber);
+        //System.out.println("thread: " + threadNumber);
+        //System.out.println("class size: " + currentGen.classSize);
+        //System.out.println("generation: " + currentGen.generationNumber);
         //System.out.println("happiness: " + currentGen.genHappiness);
 
         //setGeneration(currentGen/*, classroom*/);
-        currentGen.print();
+        //currentGen.print();
         //paint(panel.getGraphics(), currentGen);
-        System.out.println("Best Gen number: " + currentBestGen.generationNumber);
-        System.out.println("Best Gen happiness: " + currentMaxAffinity);
+        //System.out.println("Best Gen number: " + currentBestGen.generationNumber);
+        //System.out.println("Best Gen happiness: " + currentMaxAffinity);
         //paint(panel.getGraphics(), currentBestGen);
 
     }

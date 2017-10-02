@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CSC375Assignment1:jar">
+    <output-path>C:/out/artifacts/CSC375Assignment1_jar</output-path>
+    <root id="archive" name="CSC375Assignment1.jar">
+      <element id="module-output" name="CSC375Assignment1" />
+    </root>
+  </artifact>
+</component>
